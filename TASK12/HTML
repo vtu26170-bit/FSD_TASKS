@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AJAX Example</title>
+</head>
+<body>
+
+<h2>Load Data using AJAX</h2>
+
+<button onclick="loadData()">Load</button>
+
+<div id="output"></div>
+
+<script>
+function loadData() {
+  let xhr = new XMLHttpRequest();
+
+  xhr.open("GET", "https://jsonplaceholder.typicode.com/posts/1", true);
+
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      let data = JSON.parse(xhr.responseText);
+      document.getElementById("output").innerHTML =
+        "<h3>" + data.title + "</h3><p>" + data.body + "</p>";
+    }
+  };
+
+  xhr.send();
+}
+</script>
+
+</body>
+</html>
